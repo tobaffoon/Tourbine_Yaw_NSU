@@ -1,35 +1,25 @@
-""" 
-- Open and OpenFAST binary file
-- Convert it to a pandas dataframe
-- Plot a given output channel
-"""
 import os
 import matplotlib.pyplot as plt
 from openfast_toolbox.case_generation import runner
 from openfast_toolbox.io import FASTInputFile, FASTOutputFile
+from scipy.optimize import minimize
 
 YawErrorStrat = 0
 WindDeltaStrat = 1
-
-YawStrat = YawErrorStrat
-YawArg = 0.1
-# Get current directory so this script can be called from any location
 scriptDir = os.path.dirname(__file__)
 
-fastinFilename = os.path.join(scriptDir, '../openfast_yaw_NSU/r-test/glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.fst')
-yawParamsFilename = os.path.join(scriptDir, '../openfast_yaw_NSU/build/bin/yaw_control_params.dat"')
-openFAST_EXE = os.path.join(scriptDir, '../openfast_yaw_NSU/build/bin/openfast_x64.exe')  
-runner.run_cmd([fastinFilename, str(YawStrat), str(YawArg)], openFAST_EXE, showOutputs=True)
-
-fastoutFilename = os.path.join(scriptDir, '../openfast_yaw_NSU/r-test/glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.outb')
-df = FASTOutputFile(fastoutFilename).toDataFrame()
-print(df.keys())
-time  = df['Time_[s]']
-Power = df['GenPwr_[kW]']
-plt.plot(time, Power)
-plt.xlabel('Time [s]')
-plt.ylabel('GenPwr [kW]')
-print(sum(Power))
+def run_openFAST_yaw(YawArgument, YawStrategy):
+    fastinFilename = os.path.join(scriptDir, '../openfast_yaw_NSU/r-test/glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.fst')
+    openFAST_EXE = os.path.join(scriptDir, '../openfast_yaw_NSU/build/bin/openfast_x64.exe')  
+    out = runner.run_cmd([fastinFilename, str(YawStrategy), str(YawArgument[0])], openFAST_EXE, showOutputs=True)
+    if out.returncode == 1:
+        return 0
+    
+    fastoutFilename = os.path.join(scriptDir, '../openfast_yaw_NSU/r-test/glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.outb')
+    df = FASTOutputFile(fastoutFilename).toDataFrame()
+    Power = sum(df['GenPwr_[kW]'])
+    return Power
 
 if __name__ == '__main__':
-    plt.show()
+    res = minimize(run_openFAST_yaw, 0.1, args=0, method='Nelder-Mead')
+    print(res.x, res.success, res.message)
