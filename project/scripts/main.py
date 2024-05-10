@@ -36,16 +36,3 @@ if __name__ == '__main__':
         arg0 += 0.1
     with open("res.txt", "w") as fout:
         fout.write("Yaw Error: " + str(res_list) + "\n")
-        
-    arg0 = 13.0
-    strat = WindDeltaStrat
-    res_list = []
-    while arg0 <= 23.0:
-        res = minimize(neg_yaw, arg0, args=strat, method='Nelder-Mead', bounds=[(13, 23)], options={"maxiter": 20})
-        if res.success :
-            res_list.append(("s", arg0, res.x[0], -res.fun))
-        else:
-            res_list.append(("f", arg0, res.x[0], -res.fun))
-        arg0 += 5.0
-    with open("res.txt", "a") as fout:
-        fout.write("wind speed: " + str(res_list) + "\n")
