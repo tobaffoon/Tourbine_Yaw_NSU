@@ -1,4 +1,4 @@
-project/*.sum
-project/*.out
-project/*.outb
-project/*.ech
+/project/*.sum
+/project/*.out
+/project/*.outb
+/project/*.ech
