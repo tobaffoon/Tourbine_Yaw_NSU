@@ -1,6 +1,3 @@
 [submodule "project/openfast_toolbox"]
 	path = project/openfast_toolbox
 	url = https://github.com/OpenFAST/openfast_toolbox.git
-[submodule "project/openfast_yaw_NSU"]
-	path = project/openfast_yaw_NSU
-	url = https://github.com/tobaffoon/openfast_yaw_NSU.git
