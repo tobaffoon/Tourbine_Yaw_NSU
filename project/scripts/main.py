@@ -14,7 +14,7 @@ def run_openFAST_yaw(YawArgument, YawStrategy):
     if out.returncode != 0:
         return 0
     
-    fastoutFilename = os.path.join(scriptDir, '../openfast/5MW_Land_DLL_WTurb.outb')
+    fastoutFilename = os.path.join(scriptDir, '../openfast/turbine/5MW_Land_DLL_WTurb.outb')
     df = FASTOutputFile(fastoutFilename).toDataFrame()
     Power = sum(df['GenPwr_[kW]'])
     return Power
