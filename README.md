@@ -2,7 +2,7 @@
 
 ## Клонировать репозиторий с подмодулем openfast_toolbox
 ```
-git clone --recurse-submodules -j8 https://github.com/tobaffoon/Turbine_Yaw_Modeling_NSU.git
+git clone --depth 1 --recurse-submodules -j8 https://github.com/tobaffoon/Turbine_Yaw_Modeling_NSU.git
 ```
 
 ## Установить openfast_toolbox
