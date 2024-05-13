@@ -14,3 +14,9 @@ cd Turbine_Yaw_Modeling_NSU\project\openfast_toolbox
 ```
 python -m pip install -e .
 ```
+
+## Запустить вычисления
+```
+cd ..\scripts
+python main.py
+```
