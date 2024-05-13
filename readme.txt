@@ -8,3 +8,7 @@ cd Turbine_Yaw_Modeling_NSU\project\openfast_toolbox
 
 3. Установить подмодуль через pip
 python -m pip install -e .
+
+4. Запустить вычисления
+cd ..\scripts
+python main.py
