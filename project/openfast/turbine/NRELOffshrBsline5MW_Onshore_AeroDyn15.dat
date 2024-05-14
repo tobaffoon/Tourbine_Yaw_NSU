@@ -85,10 +85,16 @@ TwrElev        TwrDiam        TwrCd          TwrTI          TwrCb !TwrTI used on
 8.7600000E+01  3.8700000E+00  1.0000000E+00  1.0000000E-01  0.0
 ======  Outputs  ====================================================================================
 True          SumPrint            - Generate a summary file listing input options and interpolated properties to "<rootname>.AD.sum"?  (flag)
-          0   NBlOuts             - Number of blade node outputs [0 - 9] (-)
+          1   NBlOuts             - Number of blade node outputs [0 - 9] (-)
           1,          9,         19    BlOutNd             - Blade nodes whose values will be output  (-)
           0   NTwOuts             - Number of tower node outputs [0 - 9]  (-)
           1,          2,          6    TwOutNd             - Tower nodes whose values will be output  (-)
                    OutList             - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
+
+"RtVAvgxh"
+"B1N1VUndx"
+"B1N1VDisx"
+"RtArea"
+"B1N1Phi"
 END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
